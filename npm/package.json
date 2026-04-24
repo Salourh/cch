@@ -1,0 +1,56 @@
+{
+  "name": "cch-tool",
+  "version": "0.1.1",
+  "description": "Fast CLI to navigate Claude Code sessions (JSONL transcripts). Git-inspired: session, show, grep, blame, commits.",
+  "bin": {
+    "cch": "bin/cch.js"
+  },
+  "files": [
+    "bin/",
+    "install.js",
+    "README.md",
+    "LICENSE-MIT",
+    "LICENSE-APACHE"
+  ],
+  "scripts": {
+    "postinstall": "node install.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Salourh/cch.git"
+  },
+  "homepage": "https://github.com/Salourh/cch",
+  "bugs": {
+    "url": "https://github.com/Salourh/cch/issues"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "cli",
+    "jsonl",
+    "sessions",
+    "transcripts"
+  ],
+  "author": "tim <tim@ttttttttttt.com>",
+  "license": "(MIT OR Apache-2.0)",
+  "engines": {
+    "node": ">=16"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "checksums": {
+    "_comment": "SHA-256 of each release archive. Filled before `npm publish` from the sha256sums.txt asset attached to the matching GitHub Release. install.js refuses to install if a platform's checksum is missing.",
+    "cch-x86_64-unknown-linux-gnu.tar.gz": "",
+    "cch-aarch64-unknown-linux-gnu.tar.gz": "",
+    "cch-x86_64-apple-darwin.tar.gz": "",
+    "cch-aarch64-apple-darwin.tar.gz": "",
+    "cch-x86_64-pc-windows-msvc.zip": ""
+  }
+}

@@ -1,0 +1,8 @@
+/target
+Cargo.lock.bak
+.claude/
+roadmap/
+monitoring/
+CLAUDE.md
+npm/node_modules/
+npm/*.tgz
