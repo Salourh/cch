@@ -1,0 +1,5 @@
+# Un ancien binaire `cc` (l'outil) peut encore vivre sur le PATH et shadow
+# `/usr/bin/cc` (le symlink vers gcc). Tant que ce vieux binaire n'est pas
+# purgé, rustc invoque le mauvais `cc` au link. Pin gcc.
+[target.aarch64-unknown-linux-gnu]
+linker = "gcc"
