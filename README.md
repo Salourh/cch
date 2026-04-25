@@ -6,43 +6,79 @@ Fast CLI to navigate [Claude Code](https://claude.com/claude-code) JSONL session
 
 ## Quick start
 
-```bash
-npm i -g cch-tool            # pre-built binary, no Rust needed
-# or
-cargo install cch            # build from source
+Install the pre-built binary (no Rust needed):
 
+```
+npm i -g cch-tool
+```
+
+Or build from source:
+
+```
+cargo install --git https://github.com/Salourh/cch
+```
+
+Top-level help:
+
+```
 cch help
-cch help-all                 # full reference for every subcommand
+```
+
+Full reference for every subcommand:
+
+```
+cch help-all
 ```
 
 ## Use cases
 
-**Humans**
+### Humans
 
-```bash
-#Check last 3 sessions
+Check the last 3 sessions:
+
+```
 cch session -3
+```
 
-# "Check the first mention to Opus"
+Find the first mention of "Opus":
+
+```
 cch grep "Opus" --reverse
 ```
 
-**Agents**
+### Agents
 
-```bash
-# "Which session produced this commit, and what was the user's exact prompt?"
+Which session produced this commit, and what was the user's exact prompt:
+
+```
 cch blame <sha>
-cch show <session-id> --role user
-
-# "List every commit this session shipped, then check if it touched anything outside working folder."
-cch commits <session-id>
-
-# "Reconstruct how the Haiku-vs-Sonnet decision evolved — oldest first."
-cch grep -E "Haiku|Sonnet" --role user --reverse -l
-# then: cch show <id> --turns <range> on each hit
 ```
 
-## secret Tip 
+Show only user turns of a session:
+
+```
+cch show <session-id> --role user
+```
+
+List every commit a session shipped:
+
+```
+cch commits <session-id>
+```
+
+Reconstruct how the Haiku-vs-Sonnet decision evolved — oldest first:
+
+```
+cch grep -E "Haiku|Sonnet" --role user --reverse -l
+```
+
+Then open each hit turn-by-turn:
+
+```
+cch show <id> --turns <range>
+```
+
+## Secret tip
 
 Add to your `CLAUDE.md`:
 

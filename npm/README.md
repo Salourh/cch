@@ -18,7 +18,7 @@ cch help-all
 - macOS x86_64, aarch64 (Apple Silicon)
 - Windows x86_64
 
-If your platform isn't listed, build from source with `cargo install cch` (see the [main repo](https://github.com/Salourh/cch)).
+If your platform isn't listed, build from source: `cargo install --git https://github.com/Salourh/cch` (see the [main repo](https://github.com/Salourh/cch)).
 
 ## License
 

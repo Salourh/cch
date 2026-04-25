@@ -82,9 +82,18 @@ jobs:
           merge-multiple: true
       - name: List artifacts
         run: ls -la artifacts
+      - name: Compute SHA-256 sums
+        run: |
+          cd artifacts
+          # Basename-only, sorted output. Maintainer pastes these into
+          # npm/package.json "checksums" before `npm publish`.
+          sha256sum cch-* | sort -k2 > sha256sums.txt
+          cat sha256sums.txt
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
-          files: artifacts/cch-*
+          files: |
+            artifacts/cch-*
+            artifacts/sha256sums.txt
           generate_release_notes: true
           fail_on_unmatched_files: true

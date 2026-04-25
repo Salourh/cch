@@ -72,16 +72,10 @@ fn stderr(o: &Output) -> String {
     String::from_utf8_lossy(&o.stderr).into_owned()
 }
 
-/// Force a file's mtime to an absolute Unix timestamp. Uses `touch -d @<secs>`
-/// — std doesn't expose utimensat and we don't want a build-time dep just for
-/// tests.
 fn set_mtime_secs(path: &Path, secs: i64) {
-    let status = Command::new("touch")
-        .args(["-d", &format!("@{secs}")])
-        .arg(path)
-        .status()
-        .expect("spawn touch");
-    assert!(status.success(), "touch failed for {}", path.display());
+    let ft = filetime::FileTime::from_unix_time(secs, 0);
+    filetime::set_file_mtime(path, ft)
+        .unwrap_or_else(|e| panic!("set mtime on {}: {e}", path.display()));
 }
 
 // --- help / version ----------------------------------------------------------

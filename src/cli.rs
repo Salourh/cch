@@ -214,8 +214,12 @@ produced a commit — pipe the id into another cch command.";
     about = ABOUT,
     long_about = LONG_ABOUT,
     arg_required_else_help = true,
+    disable_version_flag = true,
 )]
 pub struct Cli {
+    /// Print version and exit
+    #[arg(short = 'v', long = "version", action = clap::ArgAction::Version)]
+    _version: (),
     #[command(subcommand)]
     pub command: Command,
 }

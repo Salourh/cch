@@ -103,8 +103,11 @@ fn is_range(s: &str) -> bool {
 }
 
 fn run_range(range: &str) -> anyhow::Result<i32> {
+    // `--end-of-options` stops git from parsing a user-supplied range like
+    // `--output=/etc/passwd` as a flag (git ≥ 2.24). Clap already rejects
+    // leading `-`, but the user can bypass that with `cch blame -- --foo`.
     let out = Command::new("git")
-        .args(["log", "--reverse", "--format=%H", range])
+        .args(["log", "--reverse", "--format=%H", "--end-of-options", range])
         .output()?;
     if !out.status.success() {
         anyhow::bail!(
@@ -236,8 +239,16 @@ pub(crate) fn load_commit_in(cwd: Option<&Path>, sha: &str) -> anyhow::Result<Co
     if let Some(d) = cwd {
         show.current_dir(d);
     }
+    // See note in `run_range` — `--end-of-options` blocks flag-injection via
+    // the user-controlled <sha>.
     let out = show
-        .args(["show", "-s", "--format=%H%n%h%n%ct%n%s", sha])
+        .args([
+            "show",
+            "-s",
+            "--format=%H%n%h%n%ct%n%s",
+            "--end-of-options",
+            sha,
+        ])
         .output()?;
     if !out.status.success() {
         anyhow::bail!(

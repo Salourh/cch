@@ -1,6 +1,6 @@
 {
   "name": "cch-tool",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Fast CLI to navigate Claude Code sessions (JSONL transcripts). Git-inspired: session, show, grep, blame, commits.",
   "bin": {
     "cch": "bin/cch.js"
@@ -44,5 +44,13 @@
   "cpu": [
     "x64",
     "arm64"
-  ]
+  ],
+  "checksums": {
+    "_comment": "SHA-256 of each release archive. Filled before `npm publish` from the sha256sums.txt asset attached to the matching GitHub Release. install.js refuses to install if a platform's checksum is missing.",
+    "cch-x86_64-unknown-linux-gnu.tar.gz": "b44226b084b3ebf6bab096e42fac6a9bf1242108f101f456c80e9b3445fd2a73",
+    "cch-aarch64-unknown-linux-gnu.tar.gz": "9f5a457a406df83562b542ce1f185c0f098e878e1d6f4340a3b1f4e3ad4fda03",
+    "cch-x86_64-apple-darwin.tar.gz": "a3f7ebc9d304b69220aafdd55d1e075ccf4b145a95b564da7c9a7d64aeea8ffc",
+    "cch-aarch64-apple-darwin.tar.gz": "18ee2aa93dfbb4bf318b20adb0089568b72d936734b59fcae15479569117da58",
+    "cch-x86_64-pc-windows-msvc.zip": "eb7a9fb8b1f629a66028e0dc44ed1bc11e9c47dfe87f64ed14e036860d28bcd7"
+  }
 }
