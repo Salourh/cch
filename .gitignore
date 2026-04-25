@@ -3,6 +3,8 @@ Cargo.lock.bak
 .claude/
 roadmap/
 monitoring/
+frabic/
+docs/
 CLAUDE.md
 npm/node_modules/
 npm/*.tgz

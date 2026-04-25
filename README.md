@@ -1,8 +1,16 @@
 # cch
 
-Fast CLI to navigate [Claude Code](https://claude.com/claude-code) JSONL session transcripts (`~/.claude/projects/`). Built for humans and for agents.
+[![CI](https://github.com/Salourh/cch/actions/workflows/ci.yml/badge.svg)](https://github.com/Salourh/cch/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/cch-tool.svg)](https://www.npmjs.com/package/cch-tool)
+[![license](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
 
-> Disclaimer: this tool was entirely vibe-coded.
+Fast CLI to navigate [Claude Code](https://claude.com/claude-code) JSONL session transcripts (`~/.claude/projects/`). Git-inspired subcommands: `session`, `show`, `grep`, `blame`, `commits`. Built for humans and for agents.
+
+~1ms for `cch session`, single static binary, no runtime.
+
+![demo](demo.gif)
+
+> Disclaimer: this tool was entirely vibe-coded — see [How this was built](#how-this-was-built).
 
 ## Quick start
 
@@ -89,6 +97,23 @@ Add to your `CLAUDE.md`:
 - **Project**: cwd canonicalized, then every `/` and `.` → `-`. So `/home/a.b/c` → `~/.claude/projects/-home-a-b-c/`.
 - **Session id**: any unique UUID prefix works (`cch show a1b2`).
 - **Sidechains** (subagent calls) are skipped by default.
+
+## How this was built
+
+`cch` was vibe-coded end-to-end with Claude Code.
+
+- `cargo clippy --all-targets -- -D warnings` on every change
+- No `unwrap()` in production code, `anyhow::Result` everywhere at surface
+- Sub-10ms startup as a hard budget, checked against real data
+- CI runs fmt + clippy + tests on Linux and macOS; releases ship pre-built binaries for Linux (x86_64, aarch64), macOS (x86_64, aarch64), and Windows (x86_64)
+
+Measured on a 192-project corpus (~2GB JSONL total):
+
+| Command                 | Warm runtime |
+| ----------------------- | ------------ |
+| `cch session -n 10`     | ~1 ms        |
+| `cch session --all`     | ~1 ms        |
+| `cch grep "Opus" -l`    | ~850 ms      |
 
 ## License
 
